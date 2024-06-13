@@ -12,6 +12,9 @@ const LearnPage = async () => {
   if(!userProgress || !userProgress.activeCourse){
     redirect("/courses")
     const para = Math
+    const para2 = Math
+    const para3 = Math
+    const para34 = Math
   }
 
 
