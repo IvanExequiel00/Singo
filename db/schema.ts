@@ -28,7 +28,7 @@ export const unitsRelations = relations(units, ({ many, one}) =>({
         fields: [units.courseId],
         references:[courses.id],
     }),
-    lesson: many(lessons),
+    lessons: many(lessons),
 }))
 
 export const lessons = pgTable("lessons", {
@@ -65,10 +65,11 @@ export const challengesRelations = relations(challenges, ({one, many}) =>
         references: [lessons.id]
     }),
     challengeOptions: many(challengeOptions),
+    challengeProgress: many(challengeProgress)
 })
 )
 
-export const challengeOptions = pgTable("challengeOptions", {
+export const challengeOptions = pgTable("challenge_options", {
     id: serial("id").primaryKey(),
     challengeId: integer("challenge_id").references(() => challenges.id, {onDelete: "cascade"}).notNull(),
    
@@ -87,17 +88,17 @@ export const challengeOptionsRelations = relations(challengeOptions, ({one}) =>
 })
 )
 
-export const challengeProgress = pgTable("challengeProgress", {
+export const challengeProgress = pgTable("challenge_progress", {
     id: serial("id").primaryKey(),
     userId: text("user_id").notNull(), //TODO: confirm this doesnt break
     challengeId: integer("challenge_id").references(() => challenges.id, {onDelete: "cascade"}).notNull(),
     completed: boolean("completed").notNull().default(false),
 })
 
-export const challengeProgressRelations = relations(challengeOptions, ({one}) =>
+export const challengeProgressRelations = relations(challengeProgress, ({one}) =>
     ({
     challenge: one(challenges, {
-        fields: [challengeOptions.challengeId],
+        fields: [challengeProgress.challengeId],
         references: [challenges.id]
     })
 })
