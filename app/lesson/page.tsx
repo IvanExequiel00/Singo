@@ -23,9 +23,13 @@ const LessonPage = async () =>{
 
 
     return(
-        <div>
-            lessonPage
-        </div>
+        <Quiz 
+        initialLessonId={lesson.id}
+        initialLessonChallenges={lesson.challenges}
+        initialHearts={userProgress.hearts}
+        initialPercentage={initialPercentage}
+        userSubscription={null}
+        />
     )
 }
 export default LessonPage;
