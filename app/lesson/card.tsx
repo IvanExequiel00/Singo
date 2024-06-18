@@ -1,5 +1,6 @@
 import { challenges } from "@/db/schema";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 type Props ={
     id: number;
@@ -34,11 +35,23 @@ export const Card = ({
             selected && "border-sky-300 bg-sky-100 hover:bg-sky-100",
             selected && status === "correct" && "border-green-300 bg-green-100 hover:bg-green-100",
             selected && status === "wrong" && " border-rose-300 bg-rose-100 hover:bg-rose-100",
-            disable && "",
+            disable && "pointer-events-none hover:bg-white",
+            type === "ASSIST" && "lg:p-3 w-full"
 
         )}
         >
-card
+            {imageSrc && (
+                <div className="relative  aspect-square mb-4 max-h-[80px] lg:max-h-[150px] w-full" >
+                <Image 
+                src={imageSrc}
+                fill
+                alt={text}
+
+                />
+            </div>
+            )}
+            
+
         </div>
     )
 }
