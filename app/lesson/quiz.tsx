@@ -10,6 +10,7 @@ import { uperstChallengeProgress } from "@/actions/challenge-progress";
 import { toast } from "sonner";
 import { reduceHearts } from "@/actions/user-progress";
 import { useAudio } from "react-use";
+import Image from "next/image";
 
 type Props = {
     initialPercentage: number;
@@ -138,9 +139,31 @@ const [pending, starTransition] = useTransition();
 
     if(!challenge){
         return(
-        <div>
-            Finish the challenge
-        </div>
+        <>
+           <div className="flex flex-col gap-y-4 lg:gap-y-8 max-w-lg mx-auto text-center items-center justify-center h-full">
+            <Image 
+            src="finish.svg"
+            alt="finish"
+            className="hidden lg:block"
+            height={100}
+            width={100}
+            />
+            <Image 
+            src="finish.svg"
+            alt="finish"
+            className="block lg:hidden"
+            height={50}
+            width={50}
+            />
+            <h1 className="text-lg lg:text-3xl font-bold text-neutral-700"> 
+                Great job! <br />  You&apos;ve completed the lesson
+            </h1>
+            <div className="flex items-center gap-x-4 w-full">
+                
+
+            </div>
+           </div>
+        </>
         )
     }
 
