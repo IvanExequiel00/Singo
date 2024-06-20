@@ -1,11 +1,13 @@
 "use client"
 
 import { challengeOptions, challenges } from "@/db/schema";
-import { useState } from "react";
+import { startTransition, useState, useTransition } from "react";
 import { Header } from "./header";
 import { QuestionBubble } from "./question-bubble";
 import { Challenges } from "./challenge";
 import { Footer } from "./footer";
+import { uperstChallengeProgress } from "@/actions/challenge-progress";
+import { toast } from "sonner";
 
 type Props = {
     initialPercentage: number;
@@ -28,8 +30,11 @@ export const Quiz = ({
     initialLessonChallenges,
     userSubscription
 }:Props) =>{
+const [pending, starTransition] = useTransition();
+
+
     const [hearts, setHearts] = useState(initialHearts);
-    const [percentage, setPercentage] = useState(20 ||initialPercentage);
+    const [percentage, setPercentage] = useState(initialPercentage);
     const [challenges] = useState(initialLessonChallenges);
 
     const [activeIndex, setActiveIndex] = useState(() =>{
@@ -75,14 +80,31 @@ export const Quiz = ({
         }
 
         if(correctOptions.id === selectedOption) {
-            console.log("correct options")
+            startTransition(() =>{
+                uperstChallengeProgress(challenge.id)
+                .then((response) =>{
+                    if(response?.error === "hearts"){
+                        console.log("mising hearts")
+                        return;
+                    }  
+                    setStatus("correct");
+                    setPercentage((prev) => prev + 100 / challenges.length);
+                    if(initialPercentage === 100){
+                        setHearts((prev) => Math.min(prev + 1, 5))
+                    }
+                })
+                .catch(() => toast.error("ssomething went wrong. please try again"))
+            })
+            
         }else{
             console.error("Incorrect Option")
         }
 
     }
 
-    const title = challenge.type === "ASSIST" ? "Select the correct meaning" : challenge.question;
+    const title = challenge.type === "ASSIST" 
+    ? "Select the correct meaning" 
+    : challenge.question;
 
 
     return(

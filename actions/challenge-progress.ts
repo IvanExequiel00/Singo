@@ -1,4 +1,4 @@
-"use client";
+"use server";
 
 import db from "@/db/drizzle";
 import { getUserProgress } from "@/db/queries";
