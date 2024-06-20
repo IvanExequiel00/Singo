@@ -1,7 +1,7 @@
 "use client"
 
 import { challengeOptions, challenges } from "@/db/schema";
-import { startTransition, useState, useTransition } from "react";
+import {  useState, useTransition } from "react";
 import { Header } from "./header";
 import { QuestionBubble } from "./question-bubble";
 import { Challenges } from "./challenge";
@@ -81,7 +81,7 @@ const [pending, starTransition] = useTransition();
         }
 
         if(correctOptions.id === selectedOption) {
-            startTransition(() =>{
+            starTransition(() =>{
                 uperstChallengeProgress(challenge.id)
                 .then((response) =>{
                     if(response?.error === "hearts"){
@@ -98,20 +98,24 @@ const [pending, starTransition] = useTransition();
             })
             
         }else{
-           startTransition(() =>{
+        starTransition(() =>{
             reduceHearts(challenge.id)
-            .then((respone)=>{
-                if(respone?.error === "hearts"){
-                    console.error("missings hearts");
+            .then((responseW) =>{
+                if(responseW?.error  === "hearts"){
+                    console.error("misiong hearts reduce hearts");
                     return;
                 }
+
                 setStatus("wrong");
-                if(!respone?.error){
+                
+
+                if(!responseW?.error){
                     setHearts((prev) => Math.max(prev - 1, 0))
-                }
-            } )
-            .catch(() => toast.error("something went wrong. please  try again"))
-           })
+                } 
+            })
+
+            .catch(() =>toast.error("somethin went ro"))
+        })
         }
 
     }
@@ -153,6 +157,7 @@ const [pending, starTransition] = useTransition();
             </div>
 
         </div>
+        {console.log(status)}
         <Footer 
         disabled={pending || !selectedOption}
         status={status}

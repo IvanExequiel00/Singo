@@ -34,14 +34,16 @@ export const uperstChallengeProgress = async (challengeId: number) => {
       eq(challengeProgress.challengeId, challengeId)
     ),
   });
+
+
   const isPractice = !!existingChallengeProgress;
+
+  
   if (currentUserProgress.hearts === 0 && !isPractice) {
     return { error: "hearts" };
   }
   if (isPractice) {
-    await db
-      .update(challengeProgress)
-      .set({
+    await db.update(challengeProgress).set({
         completed: true,
       })
       .where(eq(challengeProgress.id, existingChallengeProgress.id));
@@ -53,9 +55,9 @@ export const uperstChallengeProgress = async (challengeId: number) => {
       }).where(eq(userProgress.userId, userId));
 
       revalidatePath("/learn");
-      revalidatePath("/lesson")
-      revalidatePath("/quests")
-      revalidatePath("/leaderboard")
+      revalidatePath("/lesson");
+      revalidatePath("/quests");
+      revalidatePath("/leaderboard");
       revalidatePath(`/lesson${lessonId}`);
       return;
   }

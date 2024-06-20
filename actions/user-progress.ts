@@ -52,6 +52,8 @@ export const upsertUserProgress = async(courseId: number) =>{
 
 export const reduceHearts = async(challengeId: number) =>{
     const {userId} = await auth();
+
+
     if(!userId){
         throw new Error("unauthorized")
     }
@@ -79,14 +81,14 @@ export const reduceHearts = async(challengeId: number) =>{
     const isPractice = !!existingChallengeProgress;
 
     if(isPractice){
-        return{error: "Practice"}
+        return{error: "practice"}
     }
 
     if(!currentUserProgress){
         throw new Error("user progress not found")
     }
 
-    if (currentUserProgress.hearts) {
+    if (currentUserProgress.hearts === 0) {
         return {error: "hearts"};
     }
 
