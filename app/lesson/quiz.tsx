@@ -12,6 +12,7 @@ import { reduceHearts } from "@/actions/user-progress";
 import { useAudio } from "react-use";
 import Image from "next/image";
 import { ResultCard } from "./result-card";
+import { useRouter } from "next/navigation";
 
 type Props = {
     initialPercentage: number;
@@ -34,6 +35,8 @@ export const Quiz = ({
     initialLessonChallenges,
     userSubscription
 }:Props) =>{
+const router = useRouter();
+
 const [
     correctAudio,
     _c,
@@ -48,6 +51,9 @@ const [
 
 
 const [pending, starTransition] = useTransition();
+
+
+    const [lessonId, setLessonId] = useState(initialLessonId);
 
 
     const [hearts, setHearts] = useState(initialHearts);
@@ -171,6 +177,11 @@ const [pending, starTransition] = useTransition();
 
             </div>
            </div>
+           <Footer 
+           lessonId={lessonId}
+           status="completed"
+           onCheck={() => router.push("/learn")}
+           />
         </>
         )
     }
