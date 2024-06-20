@@ -11,6 +11,8 @@ export const ResultCard = ({
     value,
     variant
 }: Props) =>{
+const imgaeSrc = variant === "hearts" ?  "heart.svg" : "points.svg"
+
     return(
         <div className={cn(
             "rounded-2xl border-2 w-full",
@@ -18,8 +20,28 @@ export const ResultCard = ({
             variant === "hearts" && "bg-rose-500 border-rose-500",
         )}>
             <div className={cn(
-                "p-1.5 text-white rounded-t-xl font-bold text-center uppercase"
+                "p-1.5 text-white rounded-t-xl font-bold text-center uppercase text-sm",
+                variant === "hearts" && "bg-rose-500",
+                variant === "points" && "bg-orange-400"
             )}>
+                {variant === "hearts" ? "Hearts left" : "Total XP"}
+
+            </div>
+
+            <div className={cn(
+                "rounded-2xl bg-white items-center flex justify-center p-6 font-bold text-lg",
+                variant === "hearts" && "text-rose-500",
+                variant === "points" && "text-orange-400",
+            )}>
+                <Image 
+                alt="Icon"
+                src={imgaeSrc}
+                height={30}
+                width={30}
+                className="mr-1.5"
+                />
+
+                {value}
 
             </div>
         </div>
