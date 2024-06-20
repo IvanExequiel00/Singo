@@ -11,6 +11,7 @@ import { toast } from "sonner";
 import { reduceHearts } from "@/actions/user-progress";
 import { useAudio } from "react-use";
 import Image from "next/image";
+import { ResultCard } from "./result-card";
 
 type Props = {
     initialPercentage: number;
@@ -137,7 +138,7 @@ const [pending, starTransition] = useTransition();
 
     }
 
-    if(!challenge){
+    if( true ||!challenge){
         return(
         <>
            <div className="flex flex-col gap-y-4 lg:gap-y-8 max-w-lg mx-auto text-center items-center justify-center h-full">
@@ -159,7 +160,14 @@ const [pending, starTransition] = useTransition();
                 Great job! <br />  You&apos;ve completed the lesson
             </h1>
             <div className="flex items-center gap-x-4 w-full">
-                
+                <ResultCard 
+                variant="points"
+                value={challenges.length * 10}
+                />
+                <ResultCard 
+                variant="hearts"
+                value={hearts}
+                />
 
             </div>
            </div>
