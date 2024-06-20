@@ -8,6 +8,7 @@ import { Challenges } from "./challenge";
 import { Footer } from "./footer";
 import { uperstChallengeProgress } from "@/actions/challenge-progress";
 import { toast } from "sonner";
+import { reduceHearts } from "@/actions/user-progress";
 
 type Props = {
     initialPercentage: number;
@@ -97,7 +98,20 @@ const [pending, starTransition] = useTransition();
             })
             
         }else{
-            console.error("Incorrect Option")
+           startTransition(() =>{
+            reduceHearts(challenge.id)
+            .then((respone)=>{
+                if(respone?.error === "hearts"){
+                    console.error("missings hearts");
+                    return;
+                }
+                setStatus("wrong");
+                if(!respone?.error){
+                    setHearts((prev) => Math.max(prev - 1, 0))
+                }
+            } )
+            .catch(() => toast.error("something went wrong. please  try again"))
+           })
         }
 
     }
@@ -129,7 +143,7 @@ const [pending, starTransition] = useTransition();
                         onSelect={onSelect}
                         status={status}
                         selectOption={selectedOption}
-                        disable={false}
+                        disable={pending}
                         type={challenge.type} 
                         />
                     </div>
@@ -140,7 +154,7 @@ const [pending, starTransition] = useTransition();
 
         </div>
         <Footer 
-        disabled={!selectedOption}
+        disabled={pending || !selectedOption}
         status={status}
         onCheck={onContinue}
         />
