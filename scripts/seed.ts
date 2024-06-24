@@ -118,26 +118,26 @@ const main = async () =>{
             {
                
                 challengeId: 1,
-                imageSrc: "man.svg",  //which one of these is the "the man"?
+                imageSrc: "/man.svg",  //which one of these is the "the man"?
                 correct: true,
                 text: "el hombre",
-                audioSrc: "es_man.mp3",
+                audioSrc: "/es_man.mp3",
             },
             {
                
                 challengeId: 1,
-                imageSrc: "woman.svg",
+                imageSrc: "/woman.svg",
                 correct: false,
                 text: "la mujer",
-                audioSrc: "es_woman.mp3",
+                audioSrc: "/es_woman.mp3",
             },
             {
                
                 challengeId: 1,
-                imageSrc: "robot.svg",
+                imageSrc: "/robot.svg",
                 correct: false,
                 text: "el robot",
-                audioSrc: "es_robot.mp3",
+                audioSrc: "/es_robot.mp3",
             },
         ])
 
@@ -148,7 +148,7 @@ const main = async () =>{
                 
                 correct: true,
                 text: "el hombre",
-                audioSrc: "es_man.mp3",
+                audioSrc: "/es_man.mp3",
             },
             {
                 
@@ -156,7 +156,7 @@ const main = async () =>{
             
                 correct: false,
                 text: "la mujer",
-                audioSrc: "es_woman.mp3",
+                audioSrc: "/es_woman.mp3",
             },
             {
                
@@ -164,7 +164,7 @@ const main = async () =>{
                
                 correct: false,
                 text: "el robot",
-                audioSrc: "es_robot.mp3",
+                audioSrc: "/es_robot.mp3",
             },
         ])
 
@@ -172,26 +172,26 @@ const main = async () =>{
             {
               
                 challengeId: 3,
-                imageSrc: "man.svg",  //IS TE ROBOT?
+                imageSrc: "/man.svg",  //IS TE ROBOT?
                 correct: false,
                 text: "el hombre",
-                audioSrc: "es_man.mp3",
+                audioSrc: "/es_man.mp3",
             },
             {
               
                 challengeId: 3,
-                imageSrc: "woman.svg",
+                imageSrc: "/woman.svg",
                 correct: false,
                 text: "la mujer",
-                audioSrc: "es_woman.mp3",
+                audioSrc: "/es_woman.mp3",
             },
             {
               
                 challengeId: 3,
-                imageSrc: "robot.svg",
+                imageSrc: "/robot.svg",
                 correct: true,
                 text: "el robot",
-                audioSrc: "es_robot.mp3",
+                audioSrc: "/es_robot.mp3",
             },
         ])
 

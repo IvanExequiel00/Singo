@@ -42,7 +42,7 @@ export const Quiz = ({
 
 
 const {width, height} = useWindowSize();
-const [finishAudio] = useAudio({src: "finish.mp3", autoPlay:true})
+const [finishAudio] = useAudio({src: "/finish.mp3", autoPlay:true})
 
 
 const router = useRouter();
@@ -51,13 +51,13 @@ const [
     correctAudio,
     _c,
     correctControls,
-] = useAudio({src: "correct.wav"});
+] = useAudio({src: "/correct.wav"});
 
 const [
     incorrectAudio,
     _i,
     incorrectControls,
-] = useAudio({src: "incorrect.wav"});
+] = useAudio({src: "/incorrect.wav"});
 
 
 const [pending, starTransition] = useTransition();
@@ -168,14 +168,14 @@ const [pending, starTransition] = useTransition();
         />
            <div className="flex flex-col gap-y-4 lg:gap-y-8 max-w-lg mx-auto text-center items-center justify-center h-full">
             <Image 
-            src="finish.svg"
+            src="/finish.svg"
             alt="finish"
             className="hidden lg:block"
             height={100}
             width={100}
             />
             <Image 
-            src="finish.svg"
+            src="/finish.svg"
             alt="finish"
             className="block lg:hidden"
             height={50}

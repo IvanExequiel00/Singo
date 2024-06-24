@@ -11,7 +11,7 @@ export const ResultCard = ({
     value,
     variant
 }: Props) =>{
-const imgaeSrc = variant === "hearts" ?  "heart.svg" : "points.svg"
+const imgaeSrc = variant === "hearts" ?  "/heart.svg" : "/points.svg"
 
     return(
         <div className={cn(
