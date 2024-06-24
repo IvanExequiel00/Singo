@@ -244,7 +244,7 @@ const [pending, starTransition] = useTransition();
             </div>
 
         </div>
-        {console.log(status)}
+       
         <Footer 
         disabled={pending || !selectedOption}
         status={status}
