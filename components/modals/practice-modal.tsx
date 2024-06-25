@@ -13,13 +13,13 @@ import {Button} from "@/components/ui/button";
 
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+
 import { useEffect, useState } from "react";
 import { usePracticeModal } from "@/store/use-practice-modal";
 
 export  const PracticeModal = () =>{
 
-    const router = useRouter();
+  
     const [isClient, setIsClient] = useState(false);
     const {isOpen, close} = usePracticeModal();
     
