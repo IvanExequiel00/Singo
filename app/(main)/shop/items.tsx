@@ -33,6 +33,12 @@ export const Items = ({
         })
     }
 
+    const onUpgrade = () =>{
+        startTransition(() =>{
+            
+        })
+    }
+
 
     return(
         <ul className="w-full">
@@ -44,7 +50,7 @@ export const Items = ({
                 width={60}
                 />
                 <div className="flex-1">
-                    <p className="text-neutral-700 text-base lg:text-xl font-bold"          >
+                    <p className="text-neutral-700 text-base lg:text-xl font-bold"  >
                         Refill hearts
                     </p>
 
@@ -68,6 +74,27 @@ export const Items = ({
                         </div>
                     )}
                 </Button>
+            </div>
+            <div className="flex items-center w-full p-4 pt-8 gap-x-4  border-t-2">
+                <Image 
+                src="/unlimited.svg"
+                height={60}
+                width={60}
+                alt="Unlimited"
+                />
+                <div className="flex-1">
+                    <p className="text-neutral-700 text-base lg:text-xl font-bold"  >
+                        Unlimited Hearts
+                    </p>
+                    <Button
+                    onClick={onUpgrade}
+                    disabled={pending || hasActiveSubscription}
+                    >
+                        {hasActiveSubscription ? "active" :"upgrade"}
+                    </Button>
+
+                </div>
+
             </div>
 
         </ul>
