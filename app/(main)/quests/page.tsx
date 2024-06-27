@@ -1,4 +1,5 @@
 import { FeedWrapper } from "@/components/feed-wrapper";
+import { Promo } from "@/components/promo";
 import { StickyWrapper } from "@/components/sticky-wrapper";
 import { Progress } from "@/components/ui/progress";
 
@@ -57,6 +58,9 @@ return(
             points={userProgress.points}
             hasActiveSubscription={isPro}
             />
+             {!isPro && (
+            <Promo />
+        )}
         </StickyWrapper>
 
         <FeedWrapper>
