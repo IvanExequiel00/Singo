@@ -20,5 +20,35 @@ export const createStripeUrl = async () =>{
             customer: userSubscription.stripeCustomerId,
             return_url: returnUrl
         })
+        return { data: stripeSession.url};
     }
+    const stripeSession = await stripe.checkout.sessions.create({
+        mode: "subscription",
+        payment_method_types: ["card"],
+        customer_email: user.emailAddresses[0].emailAddress,
+        line_items:[
+            {
+                quantity: 1,
+                price_data:{
+                    currency: "USD",
+                    product_data:{
+                        name: "Singo Pro",
+                        description: "Unlimited Hearts",
+
+                    },
+                    unit_amount: 2000,
+                    recurring:{
+                        interval:"month",
+                    }
+                }
+            }
+        ],
+        metadata:{
+            userId,
+        },
+        success_url: returnUrl,
+        cancel_url: returnUrl,
+    })
+
+    return {data: stripeSession.url}
 }

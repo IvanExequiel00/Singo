@@ -1,6 +1,7 @@
 "use client"
 
 import { refillHearts } from "@/actions/user-progress";
+import { createStripeUrl } from "@/actions/user-subscription";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useTransition } from "react";
@@ -35,7 +36,13 @@ export const Items = ({
 
     const onUpgrade = () =>{
         startTransition(() =>{
-            
+            createStripeUrl()
+            .then((response) =>{
+                if(response.data) {
+                    window.location.href = response.data;
+                }
+            })
+            .catch(() => toast.error("something went wrong"))
         })
     }
 
@@ -88,9 +95,9 @@ export const Items = ({
                     </p>
                     <Button
                     onClick={onUpgrade}
-                    disabled={pending || hasActiveSubscription}
+                    disabled={pending}
                     >
-                        {hasActiveSubscription ? "active" :"upgrade"}
+                        {hasActiveSubscription ? "settings" :"upgrade"}
                     </Button>
 
                 </div>
